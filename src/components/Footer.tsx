@@ -32,13 +32,13 @@ const Footer: React.FC = () => {
                 </div>
 
                 <div className="space-y-6">
-                    <h4 className="text-white text-xs font-black uppercase tracking-[0.2em] italic">Experience</h4>
+                    <h4 className="text-white text-xs font-black uppercase tracking-[0.2em] italic"> The Experience</h4>
                     <ul className="space-y-4 text-sm font-bold">
-                        <li className="hover:text-accent transition-colors cursor-pointer">Executive Club</li>
-                        <li className="hover:text-accent transition-colors cursor-pointer">Luxury Lounges</li>
-                        <li className="hover:text-accent transition-colors cursor-pointer">Onboard Dining</li>
-                        <li className="hover:text-accent transition-colors cursor-pointer">Private Jet</li>
-                        <li className="hover:text-accent transition-colors cursor-pointer">Partner Airlines</li>
+                        <li><Link to="/executive-club" className="hover:text-accent transition-colors">Executive Club</Link></li>
+                        <li><Link to="/luxury-lounges" className="hover:text-accent transition-colors">Luxury Lounges</Link></li>
+                        <li><Link to="/onboard-dining" className="hover:text-accent transition-colors">Onboard Dining</Link></li>
+                        <li><Link to="/private-jet" className="hover:text-accent transition-colors">Private Jet</Link></li>
+                        <li><Link to="/partner-airlines" className="hover:text-accent transition-colors">Partner Airlines</Link></li>
                     </ul>
                 </div>
 

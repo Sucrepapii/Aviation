@@ -1,13 +1,15 @@
 import React from 'react';
+import businessClassVideo from '../assets/images/business class.mp4';
+import airportLoungeVideo from '../assets/images/airport lounge.mp4';
 
 // Video URLs — same CDN pattern used by the Hero component (works in browser)
 const VIDEOS = {
     // Airplane flying through clouds
     luxuryTravel: "https://videos.pexels.com/video-files/4396425/4396425-hd_1920_1080_30fps.mp4",
     // Business class / luxury cabin interior
-    executivePlan: "https://videos.pexels.com/video-files/3571264/3571264-hd_1920_1080_30fps.mp4",
+    executivePlan: businessClassVideo,
     // Airport / terminal luxury lounge
-    privateConcierge: "https://videos.pexels.com/video-files/2053100/2053100-hd_1920_1080_30fps.mp4"
+    privateConcierge: airportLoungeVideo
 };
 
 const TravelSupport: React.FC = () => {
@@ -94,7 +96,7 @@ const TravelSupport: React.FC = () => {
                                 <source src={VIDEOS.luxuryTravel} type="video/mp4" />
                             </video>
                         </div>
-                        <div className="space-y-8 mt-[25%] text-accent italic">
+                        <div className="space-y-8 mt-12 text-accent italic">
                             <div className="group overflow-hidden rounded-[3rem] shadow-2xl ring-12 ring-white hover:ring-accent/20 transition-all duration-700 aspect-[4/5] bg-gray-100">
                                 <video
                                     autoPlay loop muted playsInline
@@ -117,7 +119,7 @@ const TravelSupport: React.FC = () => {
                     </div>
 
                     {/* Floating Info Tag */}
-                    <div className="absolute -bottom-8 -left-8 bg-white p-6 rounded-3xl shadow-premium border border-accent/20 flex items-center gap-4 animate-fade-in delay-300">
+                    <div className="absolute top-[85%] -left-8 bg-white p-6 rounded-3xl shadow-premium border border-accent/20 flex items-center gap-4 animate-fade-in delay-300 z-10 w-max">
                         <div className="w-12 h-12 rounded-2xl bg-primary flex items-center justify-center text-white text-xl">
                             <i className="ri-medal-fill"></i>
                         </div>
