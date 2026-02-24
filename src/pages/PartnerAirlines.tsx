@@ -80,7 +80,7 @@ const PartnerAirlines: React.FC = () => {
                         loop
                         muted
                         playsInline
-                        className="w-full h-[600px] object-cover transition-transform duration-1000 group-hover:scale-105"
+                        className="w-full h-[400px] lg:h-[600px] object-cover transition-transform duration-1000 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-linear-to-t from-primary/90 via-transparent to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
                     <div className="absolute inset-x-0 bottom-0 p-10 flex items-center justify-between">

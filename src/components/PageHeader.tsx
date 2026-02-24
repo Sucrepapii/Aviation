@@ -32,7 +32,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({ title, subtitle }) => {
                 </p>
             </div>
 
-            <div className="absolute bottom-0 left-0 w-full h-[1px] bg-linear-to-r from-transparent via-white/10 to-transparent"></div>
+            <div className="absolute bottom-0 left-0 w-full h-px bg-linear-to-r from-transparent via-white/10 to-transparent"></div>
         </div>
     );
 };

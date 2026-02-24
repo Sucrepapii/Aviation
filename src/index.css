@@ -30,6 +30,7 @@
     scroll-behavior: smooth;
     color: var(--color-text-dark);
     background-color: var(--color-white);
+    overflow-x: hidden;
   }
 
   body {

@@ -179,7 +179,7 @@ const ExecutiveClub: React.FC = () => {
 
             {/* Join Modal */}
             {showJoinModal && (
-                <div className="fixed inset-0 z-50 flex items-start justify-center p-4 sm:p-8 pt-24 sm:pt-32 overflow-y-auto">
+                <div className="fixed inset-0 z-50 flex items-start justify-center p-4 sm:p-8 pt-8 sm:pt-12 pb-8 sm:pb-12 overflow-y-auto">
                     <div className="fixed inset-0 bg-primary/80 backdrop-blur-md" onClick={() => setShowJoinModal(false)}></div>
                     <div className="relative bg-white w-full max-w-2xl rounded-3xl overflow-hidden shadow-2xl animate-fade-in flex flex-col items-center mb-24">
                         <div className="p-8 md:p-16 w-full text-center">

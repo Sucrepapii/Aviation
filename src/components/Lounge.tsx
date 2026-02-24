@@ -9,7 +9,7 @@ const Lounge: React.FC = () => {
             <div className="absolute top-1/4 left-0 w-[600px] h-[600px] bg-accent/5 blur-[120px] rounded-full pointer-events-none -z-10"></div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-                <div className="relative h-[600px] mb-12 lg:mb-0 group">
+                <div className="relative h-[400px] lg:h-[600px] mb-12 lg:mb-0 group">
                     <div className="absolute top-0 left-0 w-[80%] h-[85%] rounded-[4rem] overflow-hidden shadow-2xl shadow-primary/10 ring-8 ring-white transition-all duration-700 group-hover:shadow-accent/20">
                         <video autoPlay loop muted playsInline className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105">
                             <source src={airportLoungeVideo} type="video/mp4" />

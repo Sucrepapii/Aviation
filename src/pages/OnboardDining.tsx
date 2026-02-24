@@ -43,7 +43,7 @@ const OnboardDining: React.FC = () => {
                     <img
                         src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?q=80&w=2000&auto=format&fit=crop"
                         alt="Master Chef preparing a dish"
-                        className="w-full h-[600px] object-cover transition-transform duration-1000 group-hover:scale-105"
+                        className="w-full h-[400px] lg:h-[600px] object-cover transition-transform duration-1000 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-linear-to-t from-primary/90 via-transparent to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
                     <div className="absolute bottom-10 left-10 text-white translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
@@ -121,7 +121,7 @@ const OnboardDining: React.FC = () => {
 
             {/* Seasonal Menu Modal */}
             {showMenuModal && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-8">
+                <div className="fixed inset-0 z-50 flex items-start justify-center p-4 sm:p-8 pt-8 sm:pt-12 pb-8 sm:pb-12">
                     <div className="absolute inset-0 bg-primary/80 backdrop-blur-md" onClick={() => setShowMenuModal(false)}></div>
                     <div className="relative bg-white w-full max-w-6xl rounded-3xl overflow-hidden shadow-2xl animate-fade-in flex flex-col h-[90vh] lg:h-[85vh]">
                         <div className="p-8 md:p-16 overflow-y-auto">
@@ -184,7 +184,7 @@ const OnboardDining: React.FC = () => {
 
             {/* Pre-Order Modal */}
             {showPreOrderModal && (
-                <div className="fixed inset-0 z-50 flex items-start justify-center p-4 sm:p-8 pt-24 sm:pt-32 overflow-y-auto">
+                <div className="fixed inset-0 z-50 flex items-start justify-center p-4 sm:p-8 pt-8 sm:pt-12 pb-8 sm:pb-12 overflow-y-auto">
                     <div className="fixed inset-0 bg-primary/80 backdrop-blur-md" onClick={() => setShowPreOrderModal(false)}></div>
                     <div className="relative bg-white w-full max-w-4xl rounded-3xl overflow-hidden shadow-2xl animate-fade-in flex flex-col items-center mb-24">
                         <div className="p-8 md:p-16 w-full max-w-2xl text-center">

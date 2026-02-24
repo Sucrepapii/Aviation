@@ -2,7 +2,7 @@ import React from 'react';
 
 const Hero: React.FC = () => {
     return (
-        <header className="relative h-[80vh] min-h-[600px] w-full overflow-hidden">
+        <header className="relative h-[80vh] min-h-[400px] md:min-h-[600px] w-full overflow-hidden">
             {/* Background Image with Overlay */}
             <div className="absolute inset-0 overflow-hidden">
                 <video

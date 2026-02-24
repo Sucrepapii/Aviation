@@ -58,7 +58,7 @@ const Travellers: React.FC = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
                 {travellers.map((traveller, index) => (
                     <div key={index} className="flex flex-col h-full bg-white rounded-[3rem] overflow-hidden border border-gray-100/50 shadow-sm hover:shadow-2xl hover:shadow-primary/10 transition-all duration-700 group hover:-translate-y-2">
-                        <div className="relative overflow-hidden aspect-[4/5] bg-gray-100">
+                        <div className="relative overflow-hidden aspect-4/5 bg-gray-100">
                             {/* Looping ambient destination videos */}
                             <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
                                 <source src={traveller.video} type="video/mp4" />

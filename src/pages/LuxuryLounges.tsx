@@ -62,7 +62,7 @@ const LuxuryLounges: React.FC = () => {
                     </p>
                 </div>
 
-                <div className="relative group rounded-4xl overflow-hidden shadow-2xl shadow-primary/10 h-[600px]">
+                <div className="relative group rounded-4xl overflow-hidden shadow-2xl shadow-primary/10 h-[400px] lg:h-[600px]">
                     {loungeFeatures.map((feature, index) => (
                         <div
                             key={index}
