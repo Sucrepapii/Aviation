@@ -48,7 +48,7 @@ const OnboardDining: React.FC = () => {
                     <div className="absolute inset-0 bg-linear-to-t from-primary/90 via-transparent to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
                     <div className="absolute bottom-10 left-10 text-white translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                         <p className="text-xs font-black tracking-widest uppercase mb-1 text-accent">Executive Chef</p>
-                        <p className="text-3xl font-serif italic">Jean-Luc Renard</p>
+                        <p className="text-3xl font-serif italic">Jean-Blanc Renardo</p>
                     </div>
                 </div>
             </section>

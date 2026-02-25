@@ -8,13 +8,13 @@ const partners = [
         name: "Qatar Airways",
         region: "Middle East & Beyond",
         description: "Experience the World's Best Business Class, Qsuite, connecting through the state-of-the-art Hamad International Airport.",
-        logo: "https://images.unsplash.com/photo-1517400508447-f8dd518b86db?q=80&w=800&auto=format&fit=crop"
+        logo: "https://images.unsplash.com/photo-1558989608-e50b554982bd?q=80&w=622&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     {
         name: "British Airways",
         region: "Europe & The Americas",
         description: "Seamless access to Europe and North America through the exclusive Terminal 5 at London Heathrow.",
-        logo: "https://images.unsplash.com/photo-1522093537031-3ee9dfb101ff?q=80&w=800&auto=format&fit=crop"
+        logo: "https://images.unsplash.com/photo-1617363742732-07c48f172915?q=80&w=435&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     {
         name: "Cathay Pacific",

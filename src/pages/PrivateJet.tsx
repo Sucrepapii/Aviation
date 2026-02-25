@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import PageHeader from '../components/PageHeader';
 
+import exclusiveVideo from '../assets/videos/privare jet.mp4';
+
 const PrivateJet: React.FC = () => {
     const [showQuoteModal, setShowQuoteModal] = useState(false);
     const [showFleetModal, setShowFleetModal] = useState(false);
@@ -20,9 +22,12 @@ const PrivateJet: React.FC = () => {
             {/* Introduction Overview */}
             <section className="py-24 px-6 max-w-[1280px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 <div className="relative group rounded-4xl overflow-hidden shadow-2xl shadow-primary/10">
-                    <img
-                        src="https://images.unsplash.com/photo-1540962351504-03099e0a754b?q=80&w=2000&auto=format&fit=crop"
-                        alt="Private Jet interior"
+                    <video
+                        src={exclusiveVideo}
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
                         className="w-full h-[400px] lg:h-[600px] object-cover transition-transform duration-1000 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-linear-to-t from-primary/90 via-transparent to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
