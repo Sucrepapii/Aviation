@@ -1,22 +1,80 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const Profile: React.FC = () => {
-    // Mock Data
-    const user = {
-        name: "Alexander Pierce",
-        email: "alexander.p@example.com",
-        memberSince: "2023",
-        tier: "Platinum Elite",
-        points: 142500,
-        upcomingTrips: 2,
+    const [user, setUser] = useState<any>(null);
+    const [pastTrips, setPastTrips] = useState<any[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState('');
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const fetchProfileData = async () => {
+            try {
+                const token = localStorage.getItem('flivan_token');
+                if (!token) {
+                    navigate('/login');
+                    return;
+                }
+
+                const config = {
+                    headers: { Authorization: `Bearer ${token}` }
+                };
+
+                const [userRes, bookingsRes] = await Promise.all([
+                    axios.get('http://localhost:5000/api/auth/me', config),
+                    axios.get('http://localhost:5000/api/bookings', config)
+                ]);
+
+                setUser(userRes.data);
+                setPastTrips(bookingsRes.data);
+            } catch (err: any) {
+                console.error("Profile fetch error", err);
+                if (err.response?.status === 401) {
+                    localStorage.removeItem('flivan_token');
+                    navigate('/login');
+                } else {
+                    setError('Failed to load profile data.');
+                }
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchProfileData();
+    }, [navigate]);
+
+    const handleSignOut = () => {
+        localStorage.removeItem('flivan_token');
+        navigate('/');
     };
 
-    const pastTrips = [
-        { id: 'FL-892A', date: 'Oct 12, 2025', route: 'LHR - JFK', class: 'First Class', status: 'Completed' },
-        { id: 'FL-441B', date: 'Aug 04, 2025', route: 'DXB - LHR', class: 'Business', status: 'Completed' },
-        { id: 'FL-119C', date: 'May 22, 2025', route: 'CDG - NRT', class: 'First Class', status: 'Completed' },
-    ];
+    if (loading) {
+        return (
+            <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+                <div className="flex flex-col items-center justify-center gap-4">
+                    <i className="ri-loader-4-line text-6xl text-primary animate-spin"></i>
+                    <p className="text-xl font-bold text-primary tracking-tight">Loading Profile...</p>
+                </div>
+            </div>
+        );
+    }
+
+    if (error || !user) {
+        return (
+            <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+                <div className="bg-white p-10 rounded-3xl shadow-xl text-center">
+                    <i className="ri-error-warning-line text-6xl text-red-500 mb-4 inline-block"></i>
+                    <h2 className="text-2xl font-black text-primary mb-2">Error Loading Profile</h2>
+                    <p className="text-text-light mb-6">{error || 'Unable to fetch user data.'}</p>
+                    <button onClick={handleSignOut} className="px-6 py-3 bg-primary text-white font-bold rounded-full hover:bg-primary-dark transition-all">
+                        Return to Login
+                    </button>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="min-h-screen bg-gray-50 pb-20">
@@ -44,7 +102,7 @@ const Profile: React.FC = () => {
                             <i className="ri-settings-4-line text-lg"></i>
                             Settings
                         </Link>
-                        <button className="px-6 py-3 bg-accent text-primary font-bold rounded-full hover:bg-yellow-400 transition-all shadow-lg flex items-center gap-2">
+                        <button onClick={handleSignOut} className="px-6 py-3 bg-accent text-primary font-bold rounded-full hover:bg-yellow-400 transition-all shadow-lg flex items-center gap-2">
                             <i className="ri-logout-circle-r-line text-lg"></i>
                             Sign Out
                         </button>
@@ -62,7 +120,7 @@ const Profile: React.FC = () => {
                             <div className="flex justify-between items-start mb-8">
                                 <div>
                                     <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Status</p>
-                                    <h2 className="text-2xl font-black text-accent">{user.tier}</h2>
+                                    <h2 className="text-2xl font-black text-accent">{user.memberTier || 'Silver Elite'}</h2>
                                 </div>
                                 <i className="ri-vip-crown-2-fill text-3xl text-accent/50"></i>
                             </div>
@@ -74,7 +132,7 @@ const Profile: React.FC = () => {
                         </div>
 
                         <div className="mt-8 pt-6 border-t border-gray-800 flex justify-between items-center text-sm font-bold text-gray-400">
-                            <span>Member since {user.memberSince}</span>
+                            <span>Member since {new Date(user.memberSince).getFullYear()}</span>
                             <a href="#" className="text-accent hover:text-white transition-colors flex items-center gap-1">
                                 View Benefits <i className="ri-arrow-right-line"></i>
                             </a>
@@ -130,15 +188,13 @@ const Profile: React.FC = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {pastTrips.map((trip, index) => (
-                                    <tr key={index} className="border-b border-gray-50 hover:bg-gray-50/50 transition-colors group">
-                                        <td className="py-5 px-4 font-bold text-primary whitespace-nowrap">{trip.id}</td>
+                                {pastTrips.map((trip: any, index: number) => (
+                                    <tr key={trip.id || index} className="border-b border-gray-50 hover:bg-gray-50/50 transition-colors group">
+                                        <td className="py-5 px-4 font-bold text-primary whitespace-nowrap">{trip.flightNo}</td>
                                         <td className="py-5 px-4 text-text-light font-medium whitespace-nowrap">{trip.date}</td>
                                         <td className="py-5 px-4 font-bold text-primary whitespace-nowrap">
                                             <div className="flex items-center gap-2">
-                                                {trip.route.split(' - ')[0]}
-                                                <i className="ri-arrow-right-line text-accent"></i>
-                                                {trip.route.split(' - ')[1]}
+                                                {trip.route}
                                             </div>
                                         </td>
                                         <td className="py-5 px-4 text-text-light font-medium whitespace-nowrap">{trip.class}</td>

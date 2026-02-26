@@ -1,15 +1,37 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const SignUp: React.FC = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
+    const navigate = useNavigate();
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        // MVP: Navigate to profile on submit
-        window.location.href = '/profile';
+        setError('');
+        setIsLoading(true);
+
+        try {
+            const response = await axios.post('http://localhost:5000/api/auth/register', {
+                name,
+                email,
+                password
+            });
+
+            // Save token
+            localStorage.setItem('flivan_token', response.data.token);
+
+            // Navigate to profile
+            navigate('/profile');
+        } catch (err: any) {
+            setError(err.response?.data?.message || 'Failed to register account.');
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     return (
@@ -36,6 +58,13 @@ const SignUp: React.FC = () => {
 
             <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md relative z-10 mb-12">
                 <div className="bg-white py-10 px-4 shadow-2xl shadow-primary/5 sm:rounded-3xl sm:px-10 border border-gray-100">
+
+                    {error && (
+                        <div className="mb-6 p-4 bg-red-50 border-l-4 border-red-500 text-red-700 text-sm font-medium">
+                            {error}
+                        </div>
+                    )}
+
                     <form className="space-y-6" onSubmit={handleSubmit}>
                         <div>
                             <label className="block text-sm font-bold text-primary mb-1 uppercase tracking-wider">
@@ -114,9 +143,15 @@ const SignUp: React.FC = () => {
                         <div>
                             <button
                                 type="submit"
-                                className="w-full flex justify-center py-4 px-4 border border-transparent rounded-full shadow-lg shadow-primary/20 text-sm font-bold text-white bg-primary hover:bg-primary-dark focus:outline-hidden focus:ring-2 focus:ring-offset-2 focus:ring-accent transition-all active:scale-95"
+                                disabled={isLoading}
+                                className="w-full flex justify-center py-4 px-4 border border-transparent rounded-full shadow-lg shadow-primary/20 text-sm font-bold text-white bg-primary hover:bg-primary-dark focus:outline-hidden focus:ring-2 focus:ring-offset-2 focus:ring-accent transition-all active:scale-95 disabled:opacity-70 disabled:cursor-not-allowed"
                             >
-                                Register Account
+                                {isLoading ? (
+                                    <span className="flex items-center gap-2">
+                                        <i className="ri-loader-4-line animate-spin"></i>
+                                        Processing...
+                                    </span>
+                                ) : 'Register Account'}
                             </button>
                         </div>
                     </form>
