@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { AIRPORTS } from '../constants/airports';
 
 const Booking: React.FC = () => {
@@ -45,10 +46,17 @@ const Booking: React.FC = () => {
         ).slice(0, 10);
     };
 
+    const navigate = useNavigate();
+
     const handleSearch = (e: React.FormEvent) => {
         e.preventDefault();
         setIsSearching(true);
-        setTimeout(() => setIsSearching(false), 2000);
+        setTimeout(() => {
+            setIsSearching(false);
+            if (activeTab === 'book') {
+                navigate('/login');
+            }
+        }, 2000);
     };
 
     const inputContainerClass = "relative flex flex-col border-r border-white/10 last:border-none p-5 sm:p-6 w-full transition-all hover:bg-white/40 group cursor-pointer";

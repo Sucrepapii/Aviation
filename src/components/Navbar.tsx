@@ -40,10 +40,10 @@ const Navbar: React.FC = () => {
                             </button>
                         </div>
 
-                        <button className="flex items-center gap-2 px-6 py-2.5 bg-primary text-white text-sm font-bold rounded-full hover:bg-primary-dark transition-all shadow-md active:scale-95">
+                        <Link to="/login" className="flex items-center gap-2 px-6 py-2.5 bg-primary text-white text-sm font-bold rounded-full hover:bg-primary-dark transition-all shadow-md active:scale-95">
                             <i className="ri-user-line text-lg"></i>
                             Sign In
-                        </button>
+                        </Link>
                     </div>
                 </div>
 

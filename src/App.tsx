@@ -11,6 +11,11 @@ import OnboardDining from './pages/OnboardDining';
 import PrivateJet from './pages/PrivateJet';
 import PartnerAirlines from './pages/PartnerAirlines';
 
+// Auth & Profile
+import Login from './pages/Login';
+import SignUp from './pages/SignUp';
+import Profile from './pages/Profile';
+
 function App() {
   return (
     <Router>
@@ -28,6 +33,11 @@ function App() {
           <Route path="onboard-dining" element={<OnboardDining />} />
           <Route path="private-jet" element={<PrivateJet />} />
           <Route path="partner-airlines" element={<PartnerAirlines />} />
+
+          {/* User Auth & Profile Routes */}
+          <Route path="login" element={<Login />} />
+          <Route path="signup" element={<SignUp />} />
+          <Route path="profile" element={<Profile />} />
         </Route>
       </Routes>
     </Router>
