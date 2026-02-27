@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 
 const Login: React.FC = () => {
@@ -8,6 +8,12 @@ const Login: React.FC = () => {
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
+    const location = useLocation();
+
+    // Parse redirect params
+    const queryParams = new URLSearchParams(location.search);
+    const redirectParam = queryParams.get('redirect');
+    const flightParam = queryParams.get('flight');
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -23,8 +29,12 @@ const Login: React.FC = () => {
             // Save token
             localStorage.setItem('flivan_token', response.data.token);
 
-            // Navigate to profile
-            navigate('/profile');
+            // Navigate to profile or specific booking route
+            if (redirectParam === 'booking' && flightParam) {
+                navigate(`/book/${flightParam}`);
+            } else {
+                navigate('/profile');
+            }
         } catch (err: any) {
             setError(err.response?.data?.message || 'Failed to sign in.');
         } finally {
@@ -140,7 +150,7 @@ const Login: React.FC = () => {
 
                     <div className="mt-8 text-center text-sm text-text-light font-medium flex items-center justify-center gap-2">
                         Don't have an account?
-                        <Link to="/signup" className="font-bold text-primary hover:text-accent transition-colors border-b border-transparent hover:border-accent">
+                        <Link to={`/signup${location.search}`} className="font-bold text-primary hover:text-accent transition-colors border-b border-transparent hover:border-accent">
                             Create Account
                         </Link>
                     </div>

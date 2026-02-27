@@ -9,7 +9,7 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "sqlite"
   url      = env("DATABASE_URL")
 }
 
@@ -40,4 +40,22 @@ model Booking {
   updatedAt     DateTime  @updatedAt
 
   user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Flight {
+  id              String   @id @default(uuid())
+  flightNumber    String   @unique
+  airline         String   @default("Flivan Airways")
+  originIata      String
+  originCity      String
+  destinationIata String
+  destinationCity String
+  departureTime   DateTime
+  arrivalTime     DateTime
+  basePrice       Float
+  availableSeats  Int      @default(250)
+  travelClass     String   @default("Economy") // "Economy", "Business", "First Class"
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
 }

@@ -54,7 +54,11 @@ const Booking: React.FC = () => {
         setTimeout(() => {
             setIsSearching(false);
             if (activeTab === 'book') {
-                navigate('/login');
+                const searchParams = new URLSearchParams();
+                if (flyingFrom) searchParams.append('origin', flyingFrom);
+                if (flyingTo) searchParams.append('destination', flyingTo);
+                if (departureDate) searchParams.append('date', departureDate.toISOString());
+                navigate(`/search-results?${searchParams.toString()}`);
             }
         }, 2000);
     };

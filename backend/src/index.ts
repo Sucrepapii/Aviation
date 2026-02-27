@@ -5,6 +5,7 @@ import { PrismaClient } from "@prisma/client";
 
 import authRoutes from "./routes/authRoutes";
 import bookingRoutes from "./routes/bookingRoutes";
+import flightRoutes from "./routes/flightRoutes";
 
 dotenv.config();
 
@@ -19,6 +20,7 @@ app.use(express.json());
 // Main App Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/bookings", bookingRoutes);
+app.use("/api/flights", flightRoutes);
 
 // Basic Health Route
 app.get("/api/health", (req, res) => {

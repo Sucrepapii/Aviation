@@ -10,11 +10,14 @@ import LuxuryLounges from './pages/LuxuryLounges';
 import OnboardDining from './pages/OnboardDining';
 import PrivateJet from './pages/PrivateJet';
 import PartnerAirlines from './pages/PartnerAirlines';
+import SearchResults from './pages/SearchResults';
+import BookFlight from './pages/BookFlight';
 
 // Auth & Profile
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import Profile from './pages/Profile';
+import Settings from './pages/Settings';
 
 function App() {
   return (
@@ -26,6 +29,8 @@ function App() {
           <Route path="offer" element={<Offer />} />
           <Route path="seats" element={<Seats />} />
           <Route path="destinations" element={<Destinations />} />
+          <Route path="search-results" element={<SearchResults />} />
+          <Route path="book/:flightId" element={<BookFlight />} />
 
           {/* New Experience Routes */}
           <Route path="executive-club" element={<ExecutiveClub />} />
@@ -38,6 +43,7 @@ function App() {
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<SignUp />} />
           <Route path="profile" element={<Profile />} />
+          <Route path="settings" element={<Settings />} />
         </Route>
       </Routes>
     </Router>

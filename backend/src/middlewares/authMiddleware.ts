@@ -24,16 +24,21 @@ export const protect = (
       token = req.headers.authorization.split(" ")[1];
 
       // Verify token
+      const secret = process.env.JWT_SECRET || ("" as string);
       const decoded = jwt.verify(
-        token,
-        process.env.JWT_SECRET || "fallback_secret",
-      ) as { id: string; role: string };
+        token as string,
+        secret as string,
+      ) as unknown as {
+        id: string;
+        role: string;
+      };
 
       // Attach user to req object
       req.user = decoded;
 
       next();
     } catch (error) {
+      console.error(error);
       res.status(401).json({ message: "Not authorized, token failed" });
     }
   }
