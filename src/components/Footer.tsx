@@ -66,10 +66,10 @@ const Footer: React.FC = () => {
             <div className="max-w-[1280px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-6 pt-8 border-t border-white/5">
                 <p className="text-xs font-medium text-gray-600">© {new Date().getFullYear()} Flivan Aviation Group. All Luxury Reserved.</p>
                 <div className="flex items-center gap-8 text-[10px] font-black uppercase tracking-widest">
-                    <span className="hover:text-white transition-colors cursor-pointer">Privacy Policy</span>
-                    <span className="hover:text-white transition-colors cursor-pointer">Terms of Carriage</span>
-                    <span className="hover:text-white transition-colors cursor-pointer">Accessibility</span>
-                    <span className="hover:text-white transition-colors cursor-pointer">Cookies</span>
+                    <Link to="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
+                    <Link to="/terms-of-carriage" className="hover:text-white transition-colors">Terms of Carriage</Link>
+                    <Link to="/accessibility" className="hover:text-white transition-colors">Accessibility</Link>
+                    <Link to="/cookies" className="hover:text-white transition-colors">Cookies</Link>
                 </div>
             </div>
         </footer>

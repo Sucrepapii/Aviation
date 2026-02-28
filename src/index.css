@@ -1,23 +1,52 @@
 @import "tailwindcss";
 
 @theme {
-  /* Executive Premium Palette */
+  /* ─────────────────────────────────────────── */
+  /*  PRESTIGE PALETTE — Flivan Aviation         */
+  /* ─────────────────────────────────────────── */
+
   --font-sans: "Inter", "Poppins", sans-serif;
-  --color-primary: #002147; /* Executive Navy */
-  --color-primary-dark: #001630;
-  --color-accent: #c5a059; /* Sophisticated Gold */
-  --color-accent-red: #d11241; /* Virgin-inspired Red */
-  --color-text-dark: #1a1a1a;
-  --color-text-light: #4b5563;
-  --color-extra-light: #f8fafc;
-  --color-white: #ffffff;
+
+  /* Core Navy */
+  --color-primary:       #001A3D; /* Midnight Navy  */
+  --color-primary-dark:  #000D20; /* Abyss Black    */
+  --color-primary-mid:   #002855; /* Deep Ocean     */
+
+  /* Gold Spectrum */
+  --color-accent:        #C9A84C; /* Champagne Gold */
+  --color-accent-light:  #E8C97A; /* Pale Gold      */
+  --color-accent-dark:   #A07830; /* Deep Burnished */
+  --color-accent-warm:   #D4AF37; /* Classic Gold   */
+
+  /* Platinum / Silver */
+  --color-platinum:      #E5E4E2; /* Platinum       */
+  --color-silver:        #C0C0C4; /* Brushed Silver */
+
+  /* Text */
+  --color-text-dark:     #0F172A;
+  --color-text-mid:      #334155;
+  --color-text-light:    #64748B;
+
+  /* Surface */
+  --color-surface:       #F8F7F4; /* Warm off-white */
+  --color-white:         #ffffff;
+
+  /* Structural */
   --max-width: 1280px;
-  
-  /* Shared Aesthetics */
+
+  /* Radius */
   --radius-4xl: 2rem;
-  --shadow-premium: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+
+  /* Shadows */
+  --shadow-premium:  0 20px 25px -5px rgb(0 0 0 / 0.12), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --shadow-gold:     0 0 40px 0px rgb(201 168 76 / 0.20), 0 4px 16px rgb(0 0 0 / 0.15);
+  --shadow-prestige: 0 32px 64px -12px rgb(0 26 61 / 0.40), 0 0 0 1px rgb(201 168 76 / 0.08);
+  --shadow-card:     0 4px 24px rgb(0 26 61 / 0.08), 0 1px 4px rgb(0 0 0 / 0.05);
 }
 
+/* ─────────────────────────────────────────── */
+/*  BASE RESET & GLOBAL DEFAULTS              */
+/* ─────────────────────────────────────────── */
 @layer base {
   * {
     padding: 0;
@@ -25,8 +54,7 @@
     box-sizing: border-box;
   }
 
-  html,
-  body {
+  html, body {
     scroll-behavior: smooth;
     color: var(--color-text-dark);
     background-color: var(--color-white);
@@ -36,6 +64,7 @@
   body {
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   h1, h2, h3, h4 {
@@ -43,12 +72,145 @@
   }
 }
 
-/* Animations */
+/* ─────────────────────────────────────────── */
+/*  ANIMATIONS                                 */
+/* ─────────────────────────────────────────── */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+
+@keyframes goldPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgb(201 168 76 / 0.3); }
+  50%       { box-shadow: 0 0 0 8px rgb(201 168 76 / 0); }
+}
+
+@keyframes navFade {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─────────────────────────────────────────── */
+/*  GLOBAL PRESTIGE UTILITIES                  */
+/* ─────────────────────────────────────────── */
+
+/* Fade-in */
 .animate-fade-in {
   animation: fadeIn 0.6s ease-out forwards;
+}
+
+/* Shimmer text — gold spectrum sweep */
+.gold-gradient-text {
+  background: linear-gradient(
+    90deg,
+    var(--color-accent-dark)  0%,
+    var(--color-accent-warm)  30%,
+    var(--color-accent-light) 50%,
+    var(--color-accent-warm)  70%,
+    var(--color-accent-dark)  100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 4s linear infinite;
+}
+
+/* Shimmer animation on any element */
+.animate-shimmer {
+  animation: shimmer 3s linear infinite;
+}
+
+/* Gold pulse ring — for premium CTAs */
+.btn-gold-pulse {
+  animation: goldPulse 2s ease-in-out infinite;
+}
+
+/* Premium gold CTA button */
+.btn-gold {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 2rem;
+  background: linear-gradient(135deg, var(--color-accent-warm), var(--color-accent), var(--color-accent-dark));
+  background-size: 200% 100%;
+  color: var(--color-primary-dark);
+  font-weight: 800;
+  border-radius: 9999px;
+  transition: background-position 0.4s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 20px rgb(201 168 76 / 0.30);
+  letter-spacing: 0.025em;
+}
+
+.btn-gold:hover {
+  background-position: right center;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 32px rgb(201 168 76 / 0.45);
+}
+
+.btn-gold:active {
+  transform: scale(0.97);
+}
+
+/* Glass morphism card */
+.glass-card {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(201, 168, 76, 0.15);
+  box-shadow: 0 8px 32px rgba(0, 26, 61, 0.24);
+}
+
+/* Prestige card hover */
+.prestige-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.prestige-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-gold);
+}
+
+/* Gold divider line */
+.gold-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+  opacity: 0.5;
+}
+
+/* Platinum badge */
+.badge-platinum {
+  background: linear-gradient(135deg, #6B7280, var(--color-platinum), #9CA3AF);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Gold badge */
+.badge-gold {
+  background: linear-gradient(135deg, var(--color-accent-dark), var(--color-accent-warm), var(--color-accent-light));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Ambient glow orb */
+.glow-orb {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(80px);
+  pointer-events: none;
+}
+
+.glow-orb-gold {
+  background: radial-gradient(circle, rgb(201 168 76 / 0.18) 0%, transparent 70%);
+}
+
+.glow-orb-navy {
+  background: radial-gradient(circle, rgb(0 26 61 / 0.35) 0%, transparent 70%);
 }

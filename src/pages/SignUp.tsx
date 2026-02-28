@@ -45,7 +45,7 @@ const SignUp: React.FC = () => {
     };
 
     return (
-        <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8 relative overflow-hidden">
+        <div className="min-h-screen bg-gray-50 flex flex-col justify-center pt-24 pb-12 sm:px-6 lg:px-8 relative overflow-hidden">
             {/* Background Pattern */}
             <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
                 <div className="absolute top-0 -left-1/4 w-1/2 h-full bg-linear-to-r from-accent/20 to-transparent skew-x-12 transform"></div>

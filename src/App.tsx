@@ -19,6 +19,12 @@ import SignUp from './pages/SignUp';
 import Profile from './pages/Profile';
 import Settings from './pages/Settings';
 
+// Legal Pages
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsOfCarriage from './pages/TermsOfCarriage';
+import Accessibility from './pages/Accessibility';
+import CookiePolicy from './pages/CookiePolicy';
+
 function App() {
   return (
     <Router>
@@ -44,6 +50,12 @@ function App() {
           <Route path="signup" element={<SignUp />} />
           <Route path="profile" element={<Profile />} />
           <Route path="settings" element={<Settings />} />
+
+          {/* Legal Pages */}
+          <Route path="privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="terms-of-carriage" element={<TermsOfCarriage />} />
+          <Route path="accessibility" element={<Accessibility />} />
+          <Route path="cookies" element={<CookiePolicy />} />
         </Route>
       </Routes>
     </Router>
